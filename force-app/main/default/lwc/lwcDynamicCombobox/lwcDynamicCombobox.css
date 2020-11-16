@@ -1,0 +1,7 @@
+.custom-css-slds-listbox_selection-group {
+    position: relative;
+    padding: 0;
+    padding-right: 3.75rem;
+    /* height: var(--lwc-heightInput,1.875rem); */
+    overflow: hidden;
+}

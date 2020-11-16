@@ -1,0 +1,256 @@
+<template>
+    <!-- <template if:true={comboboxConfig.isSearchable}>
+        <template if:true={comboboxConfig.isMultiSelect}>
+            {comboboxConfig.isMultiSelect}
+        </template>
+        <template if:false={comboboxConfig.isMultiSelect}>
+            {comboboxConfig.isMultiSelect}
+        </template>
+    </template>
+    <template if:false={comboboxConfig.isSearchable}>
+        <template if:true={comboboxConfig.isMultiSelect}>
+            {comboboxConfig.isMultiSelect}
+        </template>
+        <template if:false={comboboxConfig.isMultiSelect}>
+            {comboboxConfig.isMultiSelect}
+        </template>
+    </template> -->
+
+    <div class="slds-form-element">
+        <label class="slds-form-element__label" for="combobox-id-20">{comboboxConfig.label}</label>
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container slds-has-selection">
+                <div class={comboboxDivClasses} aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                    <!--div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right " role="none">
+						<template if:true={isMultiSelect}>
+							<input type="text" class="slds-input slds-combobox__input" id="combobox-id-20"
+								aria-autocomplete="list" aria-controls="listbox-id-13" autocomplete="off" role="textbox"
+								placeholder="Search..." />
+						</template>
+						<template if:false={isMultiSelect}>
+							<input type="text" class="slds-input slds-combobox__input slds-combobox__input-value"
+                            id="combobox-id-18" aria-autocomplete="list" aria-controls="listbox-unique-id-03"
+                            autocomplete="off" role="textbox" placeholder="Search..." readonly="" value="GenePoint" />
+						</template>
+                        <span
+                            class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            ***<svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                aria-hidden="true">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                            </svg>***
+                            <lightning-icon class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                aria-hidden="true" size="x-small" icon-name="utility:search" alternative-text="icon">
+                            </lightning-icon>
+                        </span>
+                    </div-->
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right "
+                        role="none">
+                        <template if:true={isSearchable}>
+                            <template if:true={isMultiSelect}>
+                                <span
+                                    class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                                    title="Account">
+                                    <lightning-icon icon-name={comboboxConfig.iconName}
+                                        class="slds-icon slds-icon_small" aria-hidden="true"
+                                        alternative-text="account icon">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">{comboboxConfig.objectName}</span>
+                                </span>
+                                <input type="text" class="slds-input slds-combobox__input" name="multilookup-input"
+                                    id="comboboxInput-multilookup" oninput={comboxInput} aria-autocomplete="list"
+                                    aria-controls="listbox-id-13" autocomplete="off" role="textbox"
+                                    placeholder={comboboxConfig.placeholder} />
+                                <span
+                                    class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                                    <!-- <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+										aria-hidden="true">
+										<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+									</svg> -->
+                                    <lightning-icon class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                        aria-hidden="true" size="x-small" icon-name="utility:search"
+                                        alternative-text="search">
+                                    </lightning-icon>
+                                </span>
+                            </template>
+                            <template if:false={isMultiSelect}>
+                                <span
+                                    class="slds-icon_container slds-combobox__input-entity-icon"
+                                    title={comboboxConfig.objectName}>
+                                    <lightning-icon icon-name={comboboxConfig.iconName}
+                                        class="slds-icon slds-icon_small" aria-hidden="true"
+                                        alternative-text="account icon">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">{comboboxConfig.objectName}</span>
+                                </span>
+                                <input type="text" class="slds-input slds-combobox__input slds-combobox__input-value"
+                                    data-id="comboboxInput-singlelookup" id="comboboxInput-singlelookup"
+                                    name="singlelookup-input" aria-autocomplete="list" oninput={comboxInput}
+                                    aria-controls="listbox-unique-id-03" autocomplete="off" role="textbox"
+                                    placeholder={comboboxConfig.placeholder} readonly value={selectedRecordValue} />
+
+                                <button class=" slds-input__icon slds-input__icon_right" title="Clear the text input"
+                                    data-id={selectedRecordValue} onclick={removePill}>
+                                    <!-- <svg class="slds-button__icon" aria-hidden="true">
+                                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
+                                    </svg> -->
+                                    <template if:true={selectedRecordValue}>
+                                        <lightning-icon icon-name="utility:close" size="x-small" aria-hidden="true"
+                                            alternative-text="close icon">
+                                        </lightning-icon>
+                                        <span class="slds-assistive-text">Clear the text input</span>
+                                    </template>
+                                    <template if:false={selectedRecordValue}>
+                                        <lightning-icon icon-name="utility:search" size="x-small" aria-hidden="true"
+                                            alternative-text="close icon">
+                                        </lightning-icon>
+                                        <span class="slds-assistive-text">search for text input</span>
+                                    </template>
+                                </button>
+                                <!-- <lightning-icon icon-name="utility:close" size="x-small"
+                                    class="slds-icon slds-icon_small " aria-hidden="true"
+                                    alternative-text="account icon">
+                                </lightning-icon> -->
+                            </template>
+                        </template>
+                        <template if:false={isSearchable}>
+                            <template if:true={isMultiSelect}>
+                                <span
+                                    class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                                    title="Account">
+                                    <lightning-icon icon-name={comboboxConfig.iconName}
+                                        class="slds-icon slds-icon_small" aria-hidden="true"
+                                        alternative-text="account icon">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">{comboboxConfig.objectName}</span>
+                                </span>
+                                <input type="text"
+                                    class="slds-input slds-combobox__input slds-has-focus slds-combobox__input-value"
+                                    name="multipicklist" id="comboboxInput-multipicklist" aria-controls="listbox-id-5"
+                                    oninput={comboxInput} autocomplete="off" role="textbox"
+                                    placeholder={comboboxConfig.placeholder} readonly="" value={selectedRecordValue} />
+                                <span
+                                    class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <!-- <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+									<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+									</svg> -->
+                                    <lightning-icon icon-name="utility:down" size="x-small"
+                                        class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                        aria-hidden="true" alternative-text="account icon">
+                                    </lightning-icon>
+                                </span>
+                            </template>
+                            <template if:false={isMultiSelect}>
+                                <span
+                                    class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon"
+                                    title="Account">
+                                    <lightning-icon icon-name={comboboxConfig.iconName}
+                                        class="slds-icon slds-icon_small" aria-hidden="true"
+                                        alternative-text="account icon">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">{comboboxConfig.objectName}</span>
+                                </span>
+                                <input type="text"
+                                    class="slds-input slds-combobox__input slds-has-focus slds-combobox__input-value"
+                                    id="comboboxInput-singlepicklist" oninput={comboxInput} name="singlepicklist"
+                                    aria-activedescendant="option1" aria-controls="listbox-id-4" autocomplete="off"
+                                    role="textbox" placeholder={comboboxConfig.placeholder} readonly="" value={selectedRecordValue} />
+                                <span
+                                    class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right">
+                                    <!-- <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+									<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+									</svg> -->
+                                    <lightning-icon icon-name="utility:down" size="x-small"
+                                        class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                        aria-hidden="true" alternative-text="account icon">
+                                    </lightning-icon>
+                                </span>
+                            </template>
+                        </template>
+                    </div>
+                    <div id="listbox-id-13" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+                        role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template iterator:it={recordsList}>
+                                <li role="presentation" class="slds-listbox__item" key={it.value.recordId}>
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-media_center"
+                                        role="option">
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                            <span class="slds-icon_container ">
+                                                <!-- <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account">
+                                                </use>
+                                            </svg> -->
+                                                <template if:true={it.value.isSelected}>
+                                                    <lightning-icon icon-name="utility:check" size="small"
+                                                        class="slds-icon slds-icon_small" aria-hidden="true"
+                                                        alternative-text="account icon">
+                                                    </lightning-icon>
+                                                </template>
+                                            </span>
+                                        </span>
+                                        <span class="slds-media__body" data-id={it.value.recordId}
+                                            onclick={selectRecordItem}>
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity"
+                                                data-id={it.value.recordId}>{it.value.recordName}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <template if:true={isSearchable}>
+                <template if:true={isMultiSelect}>
+                    <div class="custom-css-slds-listbox_selection-group">
+                        <ul class="slds-listbox slds-listbox_horizontal" role="listbox" aria-label="Selected Options:"
+                            aria-orientation="horizontal">
+                            <template iterator:it={selectedRecords}>
+                                <li key={it.value.recordId} class="slds-listbox-item" role="presentation">
+                                    <span class="slds-pill" role="option" aria-selected="true">
+                                        <span
+                                            class="slds-icon_container slds-icon-standard-account slds-pill__icon_container"
+                                            title="Account">
+                                            <!-- <svg class="slds-icon" aria-hidden="true">
+                                              <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                                            </svg> -->
+                                            <lightning-icon icon-name={comboboxConfig.iconName}
+                                                class="slds-icon slds-icon_small" aria-hidden="true"
+                                                alternative-text="account icon">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">{comboboxConfig.objectName}</span>
+                                        </span>
+                                        <span class="slds-pill__label"
+                                            title={it.value.recordName}>{it.value.recordName}</span>
+                                        <span class="slds-icon_container slds-pill__remove" title="Remove">
+                                            <!-- <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                            </svg> -->
+                                            <lightning-icon icon-name="utility:close" data-id={it.value.recordId}
+                                                onclick={removePill}
+                                                class="slds-icon slds-icon_x-small slds-icon-text-default"
+                                                aria-hidden="true" alternative-text="account icon">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Press delete or backspace to remove</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+
+
+    <!-- <template if:true={items}> -->
+    <template for:each={recordsList} for:item="acc">
+        <p key={acc.recordId}>{acc.recordName}</p>
+    </template>
+    <!-- </template> -->
+    <!-- <template if:true={wiredContacts.error}>
+        {wiredContacts.error}
+    </template> -->
+</template>

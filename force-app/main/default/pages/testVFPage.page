@@ -1,0 +1,13 @@
+<apex:page tabStyle="Account"> 
+    
+    <!-- Begin Default Content REMOVE THIS -->
+    <h1>Congratulations</h1>
+    This is your new Apex Page: HelloWorld
+    <!-- End Default Content REMOVE THIS -->
+    <apex:pageBlock >
+        <apex:pageBlockSection title="myComponent Test" collapsible="false">
+            <c:TestVFComp textValue="This Text is blue" textColor="blue" />
+            <c:TestVFComp textValue="But this is red" textColor="red" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
