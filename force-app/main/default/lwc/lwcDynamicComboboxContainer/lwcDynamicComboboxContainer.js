@@ -76,5 +76,9 @@ export default class LwcDynamicComboboxContainer extends LightningElement {
             label: 'combobox Input'
         }
     }
+
+    renderedCallback() {
+        console.log('renderedcallback');
+    }
     
 }
