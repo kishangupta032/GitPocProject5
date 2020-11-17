@@ -1,3 +1,3 @@
-public class Utility {
+public class Utility Extends Exception{
 	
 }

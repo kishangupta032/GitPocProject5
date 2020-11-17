@@ -1,3 +1,5 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
 	<p>new Aura Component</p>
+	testing
+	<p> adding some text in markup for git use. </p>
 </aura:component>
